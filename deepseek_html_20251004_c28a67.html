@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Toy Car Scanner</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: 0 auto; padding: 20px; text-align: center; }
+        .upload-box { border: 3px dashed #ccc; padding: 40px; margin: 20px 0; border-radius: 10px; }
+        button { background: #007bff; color: white; border: none; padding: 15px 30px; margin: 10px; border-radius: 5px; cursor: pointer; }
+        #image-preview { max-width: 100%; max-height: 300px; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>🎯 Toy Car Scanner</h1>
+    <p>Upload 2 photos → Get info from online databases</p>
+    
+    <div class="upload-box">
+        <input type="file" id="image-upload" accept="image/*" multiple>
+        <p>or</p>
+        <button onclick="searchWithGoogleLens()">Search with Google Lens</button>
+    </div>
+    
+    <div id="preview-area"></div>
+    
+    <script>
+        document.getElementById('image-upload').addEventListener('change', function(e) {
+            const files = e.target.files;
+            if (files.length >= 2) {
+                // Process both images
+                processImages(files[0], files[1]);
+            }
+        });
+
+        function processImages(image1, image2) {
+            alert(`Analyzing 2 photos...\nThis would send images to:\n- Google Lens API\n- eBay image search\n- Toy database APIs`);
+            
+            // Redirect to Google Lens with images or show results
+            setTimeout(() => {
+                showMockResults();
+            }, 2000);
+        }
+
+        function searchWithGoogleLens() {
+            // This would open Google Lens or use their API
+            window.open('https://lens.google.com', '_blank');
+        }
+
+        function showMockResults() {
+            document.body.innerHTML += `
+                <div style="text-align: left; background: #f8f9fa; padding: 20px; border-radius: 10px; margin-top: 20px;">
+                    <h3>🔍 Found Information:</h3>
+                    <p><strong>Hot Wheels Porsche 911 GT3</strong></p>
+                    <p>Model: HTC78 | Color: Red | Year: 2022</p>
+                    <p>Real car: 2021 Porsche 911 GT3</p>
+                    <p>Value: $8-12 | Rarity: Common</p>
+                    <button onclick="window.open('https://www.ebay.com/sch/i.html?_nkw=Hot+Wheels+Porsche+911+GT3+HTC78', '_blank')">
+                        Search eBay for Similar
+                    </button>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
